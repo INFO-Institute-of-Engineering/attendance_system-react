@@ -1,15 +1,31 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
+import api from '../../utils/api';
 
 export const login = createAsyncThunk(
   'auth/login',
-  async ({ username, password }, { rejectWithValue }) => {
+  async ({ username, password, role }, { rejectWithValue }) => {
     try {
-      const response = await axios.post('/api/auth/login', { username, password });
-      localStorage.setItem('token', response.data.token);
-      return response.data;
+      // For development/testing purposes, simulate a successful login
+      // Remove this mock response and uncomment the actual API call when backend is ready
+      const mockResponse = {
+        user: {
+          id: 1,
+          username,
+          role,
+          name: 'Test User'
+        },
+        token: 'mock-jwt-token'
+      };
+      
+      localStorage.setItem('token', mockResponse.token);
+      return mockResponse;
+      
+      // Uncomment this when your backend is ready
+      // const response = await api.post('/api/auth/login', { username, password, role });
+      // localStorage.setItem('token', response.data.token);
+      // return response.data;
     } catch (error) {
-      return rejectWithValue(error.response.data);
+      return rejectWithValue(error.response?.data || { message: 'Login failed. Please check your credentials.' });
     }
   }
 );

@@ -1,41 +1,104 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
+import api from '../../utils/api';
 
 export const submitLeaveRequest = createAsyncThunk(
   'leave/submit',
-  async (leaveData, { rejectWithValue }) => {
+  async (leaveData, { rejectWithValue, getState }) => {
     try {
-      const response = await axios.post('/api/leave/request', leaveData);
-      return response.data;
+      // For development/testing purposes, simulate a successful response
+      // Remove this mock response and uncomment the actual API call when backend is ready
+      const { auth } = getState();
+      const mockResponse = {
+        id: Math.floor(Math.random() * 1000) + 1,
+        ...leaveData,
+        studentId: auth.user?.id || 1,
+        studentName: auth.user?.name || 'Test User',
+        status: 'pending',
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString()
+      };
+      
+      return mockResponse;
+      
+      // Uncomment this when your backend is ready
+      // const response = await api.post('/api/leave/request', leaveData);
+      // return response.data;
     } catch (error) {
-      return rejectWithValue(error.response.data);
+      return rejectWithValue(error.response?.data || { message: 'Failed to submit leave request' });
     }
   }
 );
 
 export const fetchLeaveRequests = createAsyncThunk(
   'leave/fetchAll',
-  async (filters, { rejectWithValue }) => {
+  async (filters, { rejectWithValue, getState }) => {
     try {
-      const response = await axios.get('/api/leave/requests', { params: filters });
-      return response.data;
+      // For development/testing purposes, simulate a successful response
+      // Remove this mock response and uncomment the actual API call when backend is ready
+      const { auth } = getState();
+      const role = auth.user?.role || 'student';
+      
+      // Generate mock leave requests based on role
+      const mockLeaveRequests = [];
+      
+      // Create 5 sample leave requests
+      for (let i = 1; i <= 5; i++) {
+        const status = ['pending', 'approved', 'rejected'][Math.floor(Math.random() * 3)];
+        mockLeaveRequests.push({
+          id: i,
+          studentId: role === 'student' ? auth.user?.id || 1 : i,
+          studentName: role === 'student' ? auth.user?.name || 'Test User' : `Student ${i}`,
+          startDate: new Date(2023, 9, i).toISOString(),
+          endDate: new Date(2023, 9, i + 2).toISOString(),
+          reason: `Sample leave reason ${i}`,
+          status: status,
+          remarks: status !== 'pending' ? 'Sample remarks' : '',
+          createdAt: new Date(2023, 9, i - 1).toISOString(),
+          updatedAt: new Date(2023, 9, i - 1).toISOString()
+        });
+      }
+      
+      // Filter based on role
+      if (role === 'student') {
+        // Students only see their own requests
+        return mockLeaveRequests.filter(req => req.studentId === (auth.user?.id || 1));
+      } else {
+        // Advisors and HODs see all requests
+        return mockLeaveRequests;
+      }
+      
+      // Uncomment this when your backend is ready
+      // const response = await api.get('/api/leave/requests', { params: filters });
+      // return response.data;
     } catch (error) {
-      return rejectWithValue(error.response.data);
+      return rejectWithValue(error.response?.data || { message: 'Failed to fetch leave requests' });
     }
   }
 );
 
 export const updateLeaveStatus = createAsyncThunk(
   'leave/updateStatus',
-  async ({ requestId, status, remarks }, { rejectWithValue }) => {
+  async ({ requestId, status, remarks }, { rejectWithValue, getState }) => {
     try {
-      const response = await axios.put(`/api/leave/requests/${requestId}`, {
+      // For development/testing purposes, simulate a successful response
+      // Remove this mock response and uncomment the actual API call when backend is ready
+      const mockResponse = {
+        id: requestId,
         status,
-        remarks
-      });
-      return response.data;
+        remarks,
+        updatedAt: new Date().toISOString()
+      };
+      
+      return mockResponse;
+      
+      // Uncomment this when your backend is ready
+      // const response = await api.put(`/api/leave/requests/${requestId}`, {
+      //   status,
+      //   remarks
+      // });
+      // return response.data;
     } catch (error) {
-      return rejectWithValue(error.response.data);
+      return rejectWithValue(error.response?.data || { message: 'Failed to update leave status' });
     }
   }
 );
