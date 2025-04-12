@@ -227,7 +227,7 @@ const Login = () => {
             textShadow: '0 1px 2px rgba(0,0,0,0.1)'
           }}
         >
-          Kindly contact your administrator to facilitate your access to the staff portal.
+          Kindly contact your administrator to facilitate your access to the AMS portal.
         </Typography>
       </Box>
     </Box>
