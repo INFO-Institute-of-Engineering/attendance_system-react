@@ -110,7 +110,7 @@ const AuthLayout = () => {
               }}
             />
             <Typography variant="h3" component="h1" gutterBottom fontWeight="bold">
-              Welcome to Staff Portal
+              Welcome to INFO - AMS Portal
             </Typography>
             <Typography variant="h6" component="h2" gutterBottom>
               Login to access your account.
