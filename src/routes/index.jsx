@@ -12,6 +12,10 @@ import AdvisorDashboard from '../pages/advisor/Dashboard';
 import HodDashboard from '../pages/hod/Dashboard';
 import LeaveRequestForm from '../pages/student/LeaveRequestForm';
 import LeaveRequests from '../pages/student/LeaveRequests';
+import ODRequestForm from '../pages/student/ODRequestForm';
+import HalfDayRequestForm from '../pages/student/HalfDayRequestForm';
+import Attendance from '../pages/student/Attendance';
+import Status from '../pages/student/Status';
 import ManageLeaveRequests from '../pages/advisor/ManageLeaveRequests';
 import ManageStudents from '../pages/advisor/ManageStudents';
 import HodManageLeaveRequests from '../pages/hod/ManageLeaveRequests';
@@ -56,7 +60,11 @@ const AppRoutes = () => {
         </ProtectedRoute>
       }>
         <Route path="/student/dashboard" element={<StudentDashboard />} />
+        <Route path="/student/attendance" element={<Attendance />} />
         <Route path="/student/leave/new" element={<LeaveRequestForm />} />
+        <Route path="/student/halfday/new" element={<HalfDayRequestForm />} />
+        <Route path="/student/od/new" element={<ODRequestForm />} />
+        <Route path="/student/status" element={<Status />} />
         <Route path="/student/leave/requests" element={<LeaveRequests />} />
       </Route>
       

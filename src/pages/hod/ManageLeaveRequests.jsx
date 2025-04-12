@@ -169,7 +169,7 @@ const HodManageLeaveRequests = () => {
       </Typography>
 
       {/* Tabs for filtering by status */}
-      <Paper sx={{ mb: 3 }}>
+      <Paper className="glass-card" sx={{ mb: 3 }}>
         <Tabs 
           value={tabValue} 
           onChange={handleTabChange}
@@ -184,7 +184,7 @@ const HodManageLeaveRequests = () => {
       </Paper>
 
       {/* Filters and Search */}
-      <Paper sx={{ p: 2, mb: 3 }}>
+      <Paper className="glass-card" sx={{ p: 2, mb: 3 }}>
         <Grid container spacing={2} alignItems="center">
           <Grid item xs={12} sm={6} md={4}>
             <TextField
@@ -200,10 +200,11 @@ const HodManageLeaveRequests = () => {
                 ),
               }}
               size="small"
+              className="glass-input"
             />
           </Grid>
           <Grid item xs={12} sm={6} md={3}>
-            <FormControl fullWidth size="small">
+            <FormControl fullWidth size="small" className="glass-input">
               <InputLabel id="type-filter-label">Leave Type</InputLabel>
               <Select
                 labelId="type-filter-label"
@@ -224,7 +225,7 @@ const HodManageLeaveRequests = () => {
             </FormControl>
           </Grid>
           <Grid item xs={12} sm={6} md={3}>
-            <FormControl fullWidth size="small">
+            <FormControl fullWidth size="small" className="glass-input">
               <InputLabel id="advisor-filter-label">Advisor</InputLabel>
               <Select
                 labelId="advisor-filter-label"
@@ -248,7 +249,7 @@ const HodManageLeaveRequests = () => {
       </Paper>
 
       {/* Leave Requests Table */}
-      <TableContainer component={Paper}>
+      <TableContainer component={Paper} className="glass-card">
         <Table sx={{ minWidth: 650 }}>
           <TableHead>
             <TableRow>
@@ -279,7 +280,7 @@ const HodManageLeaveRequests = () => {
                       ? `${request.reason.substring(0, 30)}...`
                       : request.reason}
                   </TableCell>
-                  <TableCell>{request.advisorName || 'N/A'}</TableCell>
+                  <TableCell>{request.advisorName || 'Not reviewed'}</TableCell>
                   <TableCell>
                     <Chip 
                       label={request.status} 
@@ -291,25 +292,27 @@ const HodManageLeaveRequests = () => {
                     <IconButton 
                       size="small" 
                       onClick={() => handleViewDetails(request)}
-                      color="primary"
+                      title="View Details"
                     >
-                      <VisibilityIcon />
+                      <VisibilityIcon fontSize="small" />
                     </IconButton>
                     {request.status === 'pending' && (
                       <>
                         <IconButton 
                           size="small" 
+                          color="success" 
                           onClick={() => handleOpenActionDialog(request, 'approved')}
-                          color="success"
+                          title="Approve"
                         >
-                          <ApproveIcon />
+                          <ApproveIcon fontSize="small" />
                         </IconButton>
                         <IconButton 
                           size="small" 
+                          color="error" 
                           onClick={() => handleOpenActionDialog(request, 'rejected')}
-                          color="error"
+                          title="Reject"
                         >
-                          <RejectIcon />
+                          <RejectIcon fontSize="small" />
                         </IconButton>
                       </>
                     )}
@@ -329,7 +332,7 @@ const HodManageLeaveRequests = () => {
         </Table>
       </TableContainer>
 
-      {/* Leave Request Details Dialog */}
+      {/* View Details Dialog */}
       <Dialog open={openDialog} onClose={handleCloseDialog} maxWidth="md" fullWidth>
         <DialogTitle>
           Leave Request Details
@@ -340,110 +343,154 @@ const HodManageLeaveRequests = () => {
               position: 'absolute',
               right: 8,
               top: 8,
+              color: (theme) => theme.palette.grey[500]
             }}
           >
-            &times;
+            <RejectIcon />
           </IconButton>
         </DialogTitle>
         <DialogContent dividers>
           {currentRequest && (
-            <Grid container spacing={3}>
+            <Grid container spacing={2}>
               <Grid item xs={12} md={6}>
-                <Typography variant="subtitle1" gutterBottom>Student Information</Typography>
-                <Divider sx={{ mb: 2 }} />
-                <Grid container spacing={2}>
-                  <Grid item xs={6}>
-                    <Typography variant="body2" color="text.secondary">Name</Typography>
-                    <Typography variant="body1">{currentRequest.studentName}</Typography>
-                  </Grid>
-                  <Grid item xs={6}>
-                    <Typography variant="body2" color="text.secondary">Roll Number</Typography>
-                    <Typography variant="body1">{currentRequest.studentRollNumber}</Typography>
-                  </Grid>
-                  <Grid item xs={6}>
-                    <Typography variant="body2" color="text.secondary">Department</Typography>
-                    <Typography variant="body1">{currentRequest.studentDepartment}</Typography>
-                  </Grid>
-                  <Grid item xs={6}>
-                    <Typography variant="body2" color="text.secondary">Semester</Typography>
-                    <Typography variant="body1">{currentRequest.studentSemester}</Typography>
-                  </Grid>
-                </Grid>
+                <Typography variant="subtitle2" color="text.secondary">
+                  Student Name
+                </Typography>
+                <Typography variant="body1" gutterBottom>
+                  {currentRequest.studentName}
+                </Typography>
               </Grid>
               
               <Grid item xs={12} md={6}>
-                <Typography variant="subtitle1" gutterBottom>Leave Information</Typography>
-                <Divider sx={{ mb: 2 }} />
-                <Grid container spacing={2}>
-                  <Grid item xs={6}>
-                    <Typography variant="body2" color="text.secondary">Leave Type</Typography>
-                    <Typography variant="body1">{currentRequest.leaveType}</Typography>
-                  </Grid>
-                  <Grid item xs={6}>
-                    <Typography variant="body2" color="text.secondary">Status</Typography>
-                    <Chip 
-                      label={currentRequest.status} 
-                      color={getStatusColor(currentRequest.status)} 
-                      size="small" 
-                    />
-                  </Grid>
-                  <Grid item xs={6}>
-                    <Typography variant="body2" color="text.secondary">From Date</Typography>
-                    <Typography variant="body1">{formatDate(currentRequest.fromDate)}</Typography>
-                  </Grid>
-                  <Grid item xs={6}>
-                    <Typography variant="body2" color="text.secondary">To Date</Typography>
-                    <Typography variant="body1">
-                      {currentRequest.leaveType === 'half-day' 
-                        ? '-' 
-                        : formatDate(currentRequest.toDate)}
+                <Typography variant="subtitle2" color="text.secondary">
+                  Leave Type
+                </Typography>
+                <Typography variant="body1" gutterBottom>
+                  {currentRequest.leaveType === 'full-day' ? 'Full Day Leave' :
+                   currentRequest.leaveType === 'half-day' ? 'Half Day Leave' :
+                   currentRequest.leaveType === 'on-duty' ? 'On-Duty Leave' : currentRequest.leaveType}
+                </Typography>
+              </Grid>
+              
+              <Grid item xs={12} md={6}>
+                <Typography variant="subtitle2" color="text.secondary">
+                  From Date
+                </Typography>
+                <Typography variant="body1" gutterBottom>
+                  {formatDate(currentRequest.fromDate)}
+                </Typography>
+              </Grid>
+              
+              <Grid item xs={12} md={6}>
+                <Typography variant="subtitle2" color="text.secondary">
+                  To Date
+                </Typography>
+                <Typography variant="body1" gutterBottom>
+                  {currentRequest.leaveType === 'half-day' ? '-' : formatDate(currentRequest.toDate)}
+                </Typography>
+              </Grid>
+              
+              {currentRequest.session && (
+                <Grid item xs={12} md={6}>
+                  <Typography variant="subtitle2" color="text.secondary">
+                    Session
+                  </Typography>
+                  <Typography variant="body1" gutterBottom>
+                    {currentRequest.session === 'morning' ? 'Morning Session' : 'Afternoon Session'}
+                  </Typography>
+                </Grid>
+              )}
+              
+              {currentRequest.eventName && (
+                <>
+                  <Grid item xs={12} md={6}>
+                    <Typography variant="subtitle2" color="text.secondary">
+                      Event Name
+                    </Typography>
+                    <Typography variant="body1" gutterBottom>
+                      {currentRequest.eventName}
                     </Typography>
                   </Grid>
-                  <Grid item xs={12}>
-                    <Typography variant="body2" color="text.secondary">Reason</Typography>
-                    <Typography variant="body1">{currentRequest.reason}</Typography>
+                  
+                  <Grid item xs={12} md={6}>
+                    <Typography variant="subtitle2" color="text.secondary">
+                      Event Type
+                    </Typography>
+                    <Typography variant="body1" gutterBottom>
+                      {currentRequest.eventType}
+                    </Typography>
                   </Grid>
-                </Grid>
-              </Grid>
+                  
+                  <Grid item xs={12} md={6}>
+                    <Typography variant="subtitle2" color="text.secondary">
+                      Venue
+                    </Typography>
+                    <Typography variant="body1" gutterBottom>
+                      {currentRequest.venue}
+                    </Typography>
+                  </Grid>
+                </>
+              )}
               
               <Grid item xs={12}>
-                <Typography variant="subtitle1" gutterBottom>Review Information</Typography>
-                <Divider sx={{ mb: 2 }} />
-                <Grid container spacing={2}>
-                  <Grid item xs={6} md={3}>
-                    <Typography variant="body2" color="text.secondary">Advisor</Typography>
-                    <Typography variant="body1">{currentRequest.advisorName || 'N/A'}</Typography>
-                  </Grid>
-                  <Grid item xs={6} md={3}>
-                    <Typography variant="body2" color="text.secondary">Advisor Status</Typography>
-                    <Typography variant="body1">
-                      {currentRequest.advisorStatus ? (
-                        <Chip 
-                          label={currentRequest.advisorStatus} 
-                          color={getStatusColor(currentRequest.advisorStatus)} 
-                          size="small" 
-                        />
-                      ) : 'Not reviewed'}
-                    </Typography>
-                  </Grid>
-                  <Grid item xs={6} md={3}>
-                    <Typography variant="body2" color="text.secondary">Reviewed By</Typography>
-                    <Typography variant="body1">{currentRequest.reviewedBy || 'Not reviewed yet'}</Typography>
-                  </Grid>
-                  <Grid item xs={6} md={3}>
-                    <Typography variant="body2" color="text.secondary">Reviewed On</Typography>
-                    <Typography variant="body1">
-                      {currentRequest.reviewedAt ? formatDate(currentRequest.reviewedAt) : 'Not reviewed yet'}
-                    </Typography>
-                  </Grid>
-                  {currentRequest.remarks && (
-                    <Grid item xs={12}>
-                      <Typography variant="body2" color="text.secondary">Remarks</Typography>
-                      <Typography variant="body1">{currentRequest.remarks}</Typography>
-                    </Grid>
-                  )}
-                </Grid>
+                <Typography variant="subtitle2" color="text.secondary">
+                  Reason
+                </Typography>
+                <Typography variant="body1" paragraph>
+                  {currentRequest.reason}
+                </Typography>
               </Grid>
+              
+              <Grid item xs={12} md={6}>
+                <Typography variant="subtitle2" color="text.secondary">
+                  Status
+                </Typography>
+                <Chip 
+                  label={currentRequest.status} 
+                  color={getStatusColor(currentRequest.status)} 
+                  size="small" 
+                />
+              </Grid>
+              
+              <Grid item xs={12} md={6}>
+                <Typography variant="subtitle2" color="text.secondary">
+                  Advisor Review
+                </Typography>
+                <Typography variant="body1">
+                  {currentRequest.advisorName ? `Reviewed by ${currentRequest.advisorName}` : 'Not reviewed yet'}
+                </Typography>
+              </Grid>
+              
+              {currentRequest.remarks && (
+                <Grid item xs={12}>
+                  <Typography variant="subtitle2" color="text.secondary">
+                    Remarks
+                  </Typography>
+                  <Typography variant="body1" paragraph>
+                    {currentRequest.remarks}
+                  </Typography>
+                </Grid>
+              )}
+              
+              <Grid item xs={12}>
+                <Typography variant="subtitle2" color="text.secondary">
+                  Submitted On
+                </Typography>
+                <Typography variant="body1">
+                  {formatDate(currentRequest.submittedAt)}
+                </Typography>
+              </Grid>
+              
+              {currentRequest.documents && (
+                <Grid item xs={12}>
+                  <Typography variant="subtitle2" color="text.secondary">
+                    Supporting Documents
+                  </Typography>
+                  <Button variant="outlined" size="small" className="glass-button">
+                    View Document
+                  </Button>
+                </Grid>
+              )}
             </Grid>
           )}
         </DialogContent>
@@ -453,56 +500,89 @@ const HodManageLeaveRequests = () => {
               <Button 
                 onClick={() => {
                   handleCloseDialog();
-                  handleOpenActionDialog(currentRequest, 'approved');
-                }} 
-                color="success" 
-                variant="contained"
+                  handleOpenActionDialog(currentRequest, 'rejected');
+                }}
+                color="error"
+                variant="outlined"
+                className="glass-button"
               >
-                Approve
+                Reject
               </Button>
               <Button 
                 onClick={() => {
                   handleCloseDialog();
-                  handleOpenActionDialog(currentRequest, 'rejected');
-                }} 
-                color="error" 
+                  handleOpenActionDialog(currentRequest, 'approved');
+                }}
+                color="success"
                 variant="contained"
+                className="glass-button"
               >
-                Reject
+                Approve
               </Button>
             </>
           )}
-          <Button onClick={handleCloseDialog}>Close</Button>
+          <Button onClick={handleCloseDialog} className="glass-button">
+            Close
+          </Button>
         </DialogActions>
       </Dialog>
 
-      {/* Action Confirmation Dialog */}
+      {/* Approve/Reject Dialog */}
       <Dialog open={openActionDialog} onClose={handleCloseActionDialog}>
         <DialogTitle>
           {actionType === 'approved' ? 'Approve Leave Request' : 'Reject Leave Request'}
         </DialogTitle>
         <DialogContent>
-          <TextField
-            autoFocus
-            margin="dense"
-            id="remarks"
-            label="Remarks (Optional)"
-            type="text"
-            fullWidth
-            multiline
-            rows={4}
-            value={remarks}
-            onChange={(e) => setRemarks(e.target.value)}
-          />
+          {currentRequest && (
+            <>
+              <Typography variant="subtitle2" gutterBottom>
+                {actionType === 'approved' 
+                  ? 'You are about to approve the leave request from:' 
+                  : 'You are about to reject the leave request from:'}
+              </Typography>
+              <Typography variant="body1" gutterBottom>
+                <strong>{currentRequest.studentName}</strong>
+              </Typography>
+              <Typography variant="body2" color="text.secondary" gutterBottom>
+                {currentRequest.leaveType === 'full-day' 
+                  ? `Full day leave from ${formatDate(currentRequest.fromDate)} to ${formatDate(currentRequest.toDate)}` 
+                  : currentRequest.leaveType === 'half-day'
+                    ? `Half day leave on ${formatDate(currentRequest.fromDate)}` 
+                    : `On-duty leave from ${formatDate(currentRequest.fromDate)} to ${formatDate(currentRequest.toDate)}`}
+              </Typography>
+              
+              <TextField
+                autoFocus
+                margin="dense"
+                id="remarks"
+                label="Remarks (Optional)"
+                type="text"
+                fullWidth
+                multiline
+                rows={4}
+                value={remarks}
+                onChange={(e) => setRemarks(e.target.value)}
+                variant="outlined"
+                className="glass-input"
+                sx={{ mt: 3 }}
+                placeholder={actionType === 'approved' 
+                  ? 'Add any additional notes or instructions for the student...' 
+                  : 'Please provide a reason for rejecting this request...'}
+              />
+            </>
+          )}
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleCloseActionDialog}>Cancel</Button>
+          <Button onClick={handleCloseActionDialog} className="glass-button">
+            Cancel
+          </Button>
           <Button 
             onClick={handleSubmitAction} 
             color={actionType === 'approved' ? 'success' : 'error'}
             variant="contained"
+            className="glass-button"
           >
-            Confirm
+            {actionType === 'approved' ? 'Approve' : 'Reject'}
           </Button>
         </DialogActions>
       </Dialog>

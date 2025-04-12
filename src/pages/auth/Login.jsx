@@ -217,7 +217,7 @@ const Login = () => {
             textShadow: '0 1px 2px rgba(0,0,0,0.1)'
           }}
         >
-          New Staff?
+          New Staff or New Student?
         </Typography>
         <Typography 
           variant="body2" 
