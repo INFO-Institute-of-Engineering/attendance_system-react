@@ -150,38 +150,38 @@ const TimetableManagement = () => {
   
   // Mock data for teachers
   const teachers = [
-    'Dr. Sarah Johnson',
-    'Prof. Michael Chen',
-    'Dr. Emily Rodriguez',
-    'Prof. David Kim',
-    'Dr. Lisa Wang',
-    'Prof. Robert Brown'
+    'Dr. G. Selvavinayagam',
+    'Mrs. A. Saranya',
+    'Mrs. P. Gokila',
+    'Mr. Arocia Selvaraj',
+    'Dr. Saravanaraja',
+    'Mrs. Sundari'
   ];
   
   // Mock data for subjects
   const subjects = [
-    'Mathematics',
-    'Physics',
-    'Computer Science',
-    'English',
-    'Chemistry',
+    'Compiler Design',
+    'Cryptography and Cyber Security',
+    'Computer Environmental Sciences and Sustainability',
+    'Distributed Computing',
+    'Embedded Systems and IoT',
     'History',
-    'Data Structures',
-    'Database Management',
-    'Computer Networks',
-    'Software Engineering'
+    'Human Values and Ethics',
+    'Database Management Systems',
+    'Object Oriented Programming',
+    'Foundations of Data Science'
   ];
   
   // Mock data for rooms
   const rooms = [
-    'Room 101',
-    'Room 102',
-    'Room 103',
-    'Lab 201',
-    'Lab 202',
-    'Lab 301',
-    'Lab 302',
-    'Seminar Hall'
+    'Room 301',
+    'Room 201',
+    'Room 302',
+    'Lab 321',
+    'Lab CSE-1',
+    'Lab IT-1',
+    'Lab CSE-2',
+    'Seminar Hall - Ground Floor'
   ];
   
   if (loading && !timetable) {

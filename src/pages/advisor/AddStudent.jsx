@@ -16,8 +16,18 @@ import {
   Alert,
   Card,
   CardContent,
-  Divider
+  Divider,
+  IconButton,
+  InputAdornment,
+  Tooltip,
+  Switch,
+  FormControlLabel
 } from '@mui/material';
+import {
+  Visibility as VisibilityIcon,
+  VisibilityOff as VisibilityOffIcon,
+  Refresh as RefreshIcon
+} from '@mui/icons-material';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 // This would be implemented in userSlice.js
@@ -54,7 +64,9 @@ const AddStudent = () => {
     department: user?.department || '',
     semester: '',
     section: '',
-    classId: user?.assignedClass || ''
+    classId: user?.assignedClass || '',
+    password: '',
+    confirmPassword: ''
   });
   
   const [loading, setLoading] = useState(false);
@@ -64,6 +76,9 @@ const AddStudent = () => {
     severity: 'success'
   });
   const [errors, setErrors] = useState({});
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [autoGeneratePassword, setAutoGeneratePassword] = useState(true);
   
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -79,6 +94,48 @@ const AddStudent = () => {
         [name]: ''
       });
     }
+  };
+  
+  // Function to generate a random password
+  const generatePassword = () => {
+    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*';
+    let password = '';
+    for (let i = 0; i < 10; i++) {
+      password += chars.charAt(Math.floor(Math.random() * chars.length));
+    }
+    return password;
+  };
+
+  // Handle password visibility toggle
+  const handleTogglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
+
+  const handleToggleConfirmPasswordVisibility = () => {
+    setShowConfirmPassword(!showConfirmPassword);
+  };
+
+  // Handle auto-generate password toggle
+  const handleAutoGenerateChange = (event) => {
+    setAutoGeneratePassword(event.target.checked);
+    if (event.target.checked) {
+      const newPassword = generatePassword();
+      setFormData({
+        ...formData,
+        password: newPassword,
+        confirmPassword: newPassword
+      });
+    }
+  };
+
+  // Generate a new password
+  const handleGeneratePassword = () => {
+    const newPassword = generatePassword();
+    setFormData({
+      ...formData,
+      password: newPassword,
+      confirmPassword: newPassword
+    });
   };
   
   const validateForm = () => {
@@ -114,6 +171,16 @@ const AddStudent = () => {
     
     if (!formData.section.trim()) {
       newErrors.section = 'Section is required';
+    }
+
+    if (!formData.password) {
+      newErrors.password = 'Password is required';
+    } else if (formData.password.length < 6) {
+      newErrors.password = 'Password must be at least 6 characters';
+    }
+
+    if (formData.password !== formData.confirmPassword) {
+      newErrors.confirmPassword = 'Passwords do not match';
     }
     
     setErrors(newErrors);
@@ -151,8 +218,15 @@ const AddStudent = () => {
         department: user?.department || '',
         semester: '',
         section: '',
-        classId: user?.assignedClass || ''
+        classId: user?.assignedClass || '',
+        password: '',
+        confirmPassword: ''
       });
+      
+      // Reset password generation state
+      setAutoGeneratePassword(true);
+      setShowPassword(false);
+      setShowConfirmPassword(false);
     } catch (error) {
       setSnackbar({
         open: true,
@@ -342,6 +416,91 @@ const AddStudent = () => {
                   </Typography>
                 )}
               </FormControl>
+            </Grid>
+            
+            <Grid item xs={12}>              
+              <Typography variant="h6" gutterBottom sx={{ mt: 2, mb: 2 }}>
+                Account Credentials
+              </Typography>
+              <Divider sx={{ mb: 2 }} />
+              
+              <FormControlLabel
+                control={
+                  <Switch
+                    checked={autoGeneratePassword}
+                    onChange={handleAutoGenerateChange}
+                    color="primary"
+                  />
+                }
+                label="Auto-generate password"
+                sx={{ mb: 2 }}
+              />
+              
+              <Grid container spacing={3}>
+                <Grid item xs={12} md={6}>
+                  <TextField
+                    fullWidth
+                    label="Password"
+                    name="password"
+                    type={showPassword ? 'text' : 'password'}
+                    value={formData.password}
+                    onChange={handleInputChange}
+                    disabled={autoGeneratePassword}
+                    error={!!errors.password}
+                    helperText={errors.password}
+                    required
+                    InputProps={{
+                      endAdornment: (
+                        <InputAdornment position="end">
+                          {autoGeneratePassword && (
+                            <Tooltip title="Generate new password">
+                              <IconButton
+                                onClick={handleGeneratePassword}
+                                edge="end"
+                              >
+                                <RefreshIcon />
+                              </IconButton>
+                            </Tooltip>
+                          )}
+                          <IconButton
+                            onClick={handleTogglePasswordVisibility}
+                            edge="end"
+                          >
+                            {showPassword ? <VisibilityOffIcon /> : <VisibilityIcon />}
+                          </IconButton>
+                        </InputAdornment>
+                      ),
+                    }}
+                  />
+                </Grid>
+                
+                <Grid item xs={12} md={6}>
+                  <TextField
+                    fullWidth
+                    label="Confirm Password"
+                    name="confirmPassword"
+                    type={showConfirmPassword ? 'text' : 'password'}
+                    value={formData.confirmPassword}
+                    onChange={handleInputChange}
+                    disabled={autoGeneratePassword}
+                    error={!!errors.confirmPassword}
+                    helperText={errors.confirmPassword}
+                    required
+                    InputProps={{
+                      endAdornment: (
+                        <InputAdornment position="end">
+                          <IconButton
+                            onClick={handleToggleConfirmPasswordVisibility}
+                            edge="end"
+                          >
+                            {showConfirmPassword ? <VisibilityOffIcon /> : <VisibilityIcon />}
+                          </IconButton>
+                        </InputAdornment>
+                      ),
+                    }}
+                  />
+                </Grid>
+              </Grid>
             </Grid>
             
             <Grid item xs={12} sx={{ mt: 2 }}>
