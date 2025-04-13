@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import {
   Box,
   Paper,
@@ -34,13 +35,15 @@ import {
   Visibility as VisibilityIcon,
   Search as SearchIcon,
   Person as PersonIcon,
-  Warning as WarningIcon
+  Warning as WarningIcon,
+  Add as AddIcon
 } from '@mui/icons-material';
 import { fetchStudents } from '../../redux/slices/userSlice';
 import { fetchLeaveRequests } from '../../redux/slices/leaveSlice';
 
 const ManageStudents = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { user } = useSelector((state) => state.auth);
   const { students, loading } = useSelector((state) => state.user);
   const { requests } = useSelector((state) => state.leave);
@@ -98,9 +101,19 @@ const ManageStudents = () => {
 
   return (
     <Box>
-      <Typography variant="h4" component="h1" gutterBottom>
-        Manage Students
-      </Typography>
+      <Box sx={{ mb: 4, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        <Typography variant="h4" component="h1" gutterBottom>
+          Manage Students
+        </Typography>
+        <Button
+          variant="contained"
+          color="primary"
+          startIcon={<AddIcon />}
+          onClick={() => navigate('/advisor/students/add')}
+        >
+          Add New Student
+        </Button>
+      </Box>
 
       {/* Search */}
       <Paper sx={{ p: 2, mb: 3 }}>

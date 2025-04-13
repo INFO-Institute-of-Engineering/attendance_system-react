@@ -19,6 +19,7 @@ import {
 } from '@mui/material';
 import { fetchLeaveRequests, updateStats } from '../../redux/slices/leaveSlice';
 import { fetchStudents } from '../../redux/slices/userSlice';
+import { Schedule as ScheduleIcon } from '@mui/icons-material';
 
 const AdvisorDashboard = () => {
   const dispatch = useDispatch();

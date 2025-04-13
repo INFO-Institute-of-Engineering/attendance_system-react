@@ -16,11 +16,15 @@ import ODRequestForm from '../pages/student/ODRequestForm';
 import HalfDayRequestForm from '../pages/student/HalfDayRequestForm';
 import Attendance from '../pages/student/Attendance';
 import Status from '../pages/student/Status';
+import Timetable from '../pages/student/Timetable';
 import ManageLeaveRequests from '../pages/advisor/ManageLeaveRequests';
 import ManageStudents from '../pages/advisor/ManageStudents';
+import TimetableManagement from '../pages/advisor/TimetableManagement';
+import AddStudent from '../pages/advisor/AddStudent';
 import HodManageLeaveRequests from '../pages/hod/ManageLeaveRequests';
 import HodManageStaff from '../pages/hod/ManageStaff';
 import HodManageStudents from '../pages/hod/ManageStudents';
+import AddAdvisor from '../pages/hod/AddAdvisor';
 import NotFound from '../pages/NotFound';
 
 // Protected route component
@@ -66,6 +70,7 @@ const AppRoutes = () => {
         <Route path="/student/od/new" element={<ODRequestForm />} />
         <Route path="/student/status" element={<Status />} />
         <Route path="/student/leave/requests" element={<LeaveRequests />} />
+        <Route path="/student/timetable" element={<Timetable />} />
       </Route>
       
       {/* Advisor Routes */}
@@ -77,6 +82,8 @@ const AppRoutes = () => {
         <Route path="/advisor/dashboard" element={<AdvisorDashboard />} />
         <Route path="/advisor/leave/requests" element={<ManageLeaveRequests />} />
         <Route path="/advisor/students" element={<ManageStudents />} />
+        <Route path="/advisor/timetable" element={<TimetableManagement />} />
+        <Route path="/advisor/students/add" element={<AddStudent />} />
       </Route>
       
       {/* HOD Routes */}
@@ -89,6 +96,7 @@ const AppRoutes = () => {
         <Route path="/hod/leave/requests" element={<HodManageLeaveRequests />} />
         <Route path="/hod/staff" element={<HodManageStaff />} />
         <Route path="/hod/students" element={<HodManageStudents />} />
+        <Route path="/hod/staff/add" element={<AddAdvisor />} />
       </Route>
       
       {/* Redirect root to login */}

@@ -17,7 +17,7 @@ import {
   CardActions,
   CircularProgress
 } from '@mui/material';
-import { Add as AddIcon } from '@mui/icons-material';
+import { Add as AddIcon, Schedule as ScheduleIcon } from '@mui/icons-material';
 import { fetchLeaveRequests, updateStats } from '../../redux/slices/leaveSlice';
 import { fetchUserProfile } from '../../redux/slices/userSlice';
 
@@ -73,14 +73,24 @@ const StudentDashboard = () => {
         <Typography variant="h4" component="h1" gutterBottom>
           Student Dashboard
         </Typography>
-        <Button
-          variant="contained"
-          color="primary"
-          startIcon={<AddIcon />}
-          onClick={() => navigate('/student/leave/new')}
-        >
-          New Leave Request
-        </Button>
+        <Box sx={{ display: 'flex', gap: 2 }}>
+          <Button
+            variant="outlined"
+            color="primary"
+            startIcon={<ScheduleIcon />}
+            onClick={() => navigate('/student/timetable')}
+          >
+            View Timetable
+          </Button>
+          <Button
+            variant="contained"
+            color="primary"
+            startIcon={<AddIcon />}
+            onClick={() => navigate('/student/leave/new')}
+          >
+            New Leave Request
+          </Button>
+        </Box>
       </Box>
 
       <Grid container spacing={3}>

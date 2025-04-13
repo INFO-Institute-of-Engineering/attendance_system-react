@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import {
   Box,
   Paper,
@@ -34,7 +35,8 @@ import {
   Visibility as VisibilityIcon,
   Search as SearchIcon,
   Person as PersonIcon,
-  Class as ClassIcon
+  Class as ClassIcon,
+  Add as AddIcon
 } from '@mui/icons-material';
 
 // This would be implemented in userSlice.js
@@ -108,6 +110,7 @@ const fetchAdvisors = () => {
 
 const ManageStaff = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { user } = useSelector((state) => state.auth);
   // This would be implemented in the Redux store
   // const { advisors, loading } = useSelector((state) => state.user);
@@ -166,9 +169,19 @@ const ManageStaff = () => {
 
   return (
     <Box>
-      <Typography variant="h4" component="h1" gutterBottom>
-        Manage Staff
-      </Typography>
+      <Box sx={{ mb: 4, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        <Typography variant="h4" component="h1" gutterBottom>
+          Manage Staff
+        </Typography>
+        <Button
+          variant="contained"
+          color="primary"
+          startIcon={<AddIcon />}
+          onClick={() => navigate('/hod/staff/add')}
+        >
+          Add New Class Advisor
+        </Button>
+      </Box>
 
       {/* Search */}
       <Paper sx={{ p: 2, mb: 3 }}>
