@@ -103,20 +103,20 @@ const MainLayout = () => {
   const drawer = (
     <Box className="modern-sidebar" sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
       {/* Logo and Institute Name */}
-      <Box sx={{ p: 2, display: 'flex', alignItems: 'center', justifyContent: 'flex-start', mb: 2 }}>
+      <Box sx={{ p: { xs: 1.5, sm: 2 }, display: 'flex', alignItems: 'center', justifyContent: 'flex-start', mb: { xs: 1, sm: 2 } }}>
         <Box 
           component="img"
           src={InfoLogo}
           alt="INFO Institute Logo"
           sx={{ 
-            width: 40, 
-            height: 40, 
+            width: { xs: 32, sm: 40 }, 
+            height: { xs: 32, sm: 40 }, 
             mr: 1,
             filter: 'drop-shadow(0 0 8px rgba(255,255,255,0.3))',
             animation: 'pulse 3s infinite'
           }}
         />
-        <Typography variant="h6" component="div" className="gradient-text" sx={{ fontWeight: 'bold' }}>
+        <Typography variant="h6" component="div" className="gradient-text" sx={{ fontWeight: 'bold', fontSize: { xs: '0.9rem', sm: '1.25rem' } }}>
           INFO Institute of<br />Engineering
         </Typography>
       </Box>
@@ -128,16 +128,16 @@ const MainLayout = () => {
           display: 'flex', 
           flexDirection: 'column', 
           alignItems: 'center',
-          p: 2,
-          mx: 2,
-          mb: 3,
+          p: { xs: 1.5, sm: 2 },
+          mx: { xs: 1, sm: 2 },
+          mb: { xs: 2, sm: 3 },
           borderRadius: '16px'
         }}
       >
         <Avatar 
           sx={{ 
-            width: 80, 
-            height: 80, 
+            width: { xs: 60, sm: 80 }, 
+            height: { xs: 60, sm: 80 }, 
             mb: 1,
             border: '2px solid rgba(255,255,255,0.3)',
             backgroundColor: 'rgba(255,255,255,0.1)',
@@ -157,14 +157,14 @@ const MainLayout = () => {
       <Divider sx={{ borderColor: 'rgba(255,255,255,0.1)', mx: 2, mb: 2 }} />
       
       {/* Navigation Items */}
-      <List sx={{ px: 1, flex: 1 }}>
+      <List sx={{ px: { xs: 0.5, sm: 1 }, flex: 1 }}>
         {navigationItems.map((item) => (
           <ListItem key={item.text} disablePadding sx={{ mb: 0.5 }}>
             <ListItemButton
               className={location.pathname === item.path ? 'glow-border' : ''}
               sx={{
                 borderRadius: '12px',
-                py: 1.2,
+                py: { xs: 1, sm: 1.2 },
                 transition: 'all 0.3s ease',
                 '&.Mui-selected': {
                   backgroundColor: 'rgba(255,255,255,0.1)',
@@ -187,7 +187,7 @@ const MainLayout = () => {
             >
               <ListItemIcon sx={{ 
                 color: 'white', 
-                minWidth: 40,
+                minWidth: { xs: 36, sm: 40 },
                 opacity: location.pathname === item.path ? 1 : 0.7
               }}>
                 {item.icon}
@@ -195,7 +195,7 @@ const MainLayout = () => {
               <ListItemText 
                 primary={item.text} 
                 primaryTypographyProps={{ 
-                  fontSize: '0.95rem',
+                  fontSize: { xs: '0.85rem', sm: '0.95rem' },
                   fontWeight: location.pathname === item.path ? 'medium' : 'normal',
                   letterSpacing: '0.5px'
                 }} 
@@ -205,7 +205,7 @@ const MainLayout = () => {
         ))}
       </List>
       
-      <Box sx={{ p: 2, mt: 'auto' }}>
+      <Box sx={{ p: { xs: 1.5, sm: 2 }, mt: 'auto' }}>
         <Typography variant="caption" sx={{ opacity: 0.6, display: 'block', textAlign: 'center' }}>
           © INFO Institute of Engineering
         </Typography>
@@ -215,7 +215,7 @@ const MainLayout = () => {
 
   return (
     <Box sx={{ display: 'flex' }} className="dashboard-bg">
-      {/* Decorative floating circles */}
+      {/* Decorative floating circles - hidden on very small screens via CSS */}
       <Box className="decorative-circle circle-1"></Box>
       <Box className="decorative-circle circle-2"></Box>
       <Box className="decorative-circle circle-3"></Box>
@@ -231,10 +231,11 @@ const MainLayout = () => {
           backdropFilter: 'blur(10px)',
           borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
           boxShadow: '0 4px 20px rgba(0, 0, 0, 0.1)',
-          zIndex: (theme) => theme.zIndex.drawer + 1
+          zIndex: (theme) => theme.zIndex.drawer + 1,
+          height: { xs: 'auto', sm: 'auto' }
         }}
       >
-        <Toolbar>
+        <Toolbar sx={{ minHeight: { xs: '56px', sm: '64px' }, px: { xs: 1, sm: 2 } }}>
           <IconButton
             color="inherit"
             aria-label="open drawer"
@@ -245,7 +246,7 @@ const MainLayout = () => {
             <MenuIcon />
           </IconButton>
           
-          <Typography variant="h6" noWrap component="div" sx={{ display: { xs: 'none', sm: 'block' }, fontWeight: 'medium' }}>
+          <Typography variant="h6" noWrap component="div" sx={{ display: { xs: 'none', sm: 'block' }, fontWeight: 'medium', fontSize: { sm: '1.1rem', md: '1.25rem' } }}>
             Attendance Management Portal
           </Typography>
           
@@ -254,7 +255,7 @@ const MainLayout = () => {
             flexGrow: 1, 
             display: 'flex', 
             justifyContent: 'center',
-            ml: 2
+            ml: { xs: 1, sm: 2 }
           }}>
             <Box 
               className="glass"
@@ -287,8 +288,9 @@ const MainLayout = () => {
                 placeholder="Search…"
                 sx={{
                   color: 'white',
-                  padding: '10px 8px 10px 48px',
+                  padding: { xs: '8px 8px 8px 40px', sm: '10px 8px 10px 48px' },
                   width: '100%',
+                  fontSize: { xs: '0.875rem', sm: '1rem' },
                   '& ::placeholder': {
                     color: 'rgba(255, 255, 255, 0.7)',
                     opacity: 1
@@ -303,12 +305,13 @@ const MainLayout = () => {
             color="inherit" 
             className="notification-badge"
             sx={{ 
-              mr: 1,
+              mr: { xs: 0.5, sm: 1 },
               backgroundColor: 'rgba(255, 255, 255, 0.05)',
               '&:hover': {
                 backgroundColor: 'rgba(255, 255, 255, 0.1)',
               },
-              transition: 'all 0.3s ease'
+              transition: 'all 0.3s ease',
+              padding: { xs: 0.5, sm: 0.75 }
             }}
           >
             <Badge badgeContent={4} color="secondary">
@@ -334,8 +337,8 @@ const MainLayout = () => {
             }}
           >
             <Avatar sx={{ 
-              width: 32, 
-              height: 32,
+              width: { xs: 28, sm: 32 }, 
+              height: { xs: 28, sm: 32 },
               backgroundColor: 'rgba(255, 255, 255, 0.2)',
               border: '2px solid rgba(255, 255, 255, 0.3)',
               boxShadow: '0 0 10px rgba(138, 43, 226, 0.4)'
@@ -450,21 +453,23 @@ const MainLayout = () => {
         component="main"
         sx={{ 
           flexGrow: 1, 
-          p: 3, 
+          p: { xs: 2, sm: 3 }, 
           width: { sm: `calc(100% - ${drawerWidth}px)` },
           minHeight: '100vh',
           position: 'relative',
           zIndex: 1,
-          transition: 'all 0.3s ease'
+          transition: 'all 0.3s ease',
+          overflowX: 'hidden'
         }}
       >
         <Toolbar />
         <Container 
           maxWidth="lg" 
           sx={{ 
-            mt: 2,
+            mt: { xs: 1, sm: 2 },
             position: 'relative',
-            zIndex: 2
+            zIndex: 2,
+            px: { xs: 1, sm: 2 }
           }}
         >
           {/* Floating decorative elements */}

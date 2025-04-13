@@ -82,11 +82,14 @@ const Login = () => {
       component="form" 
       onSubmit={handleSubmit} 
       sx={{ 
-        mt: 3,
+        mt: { xs: 2, sm: 3 },
         position: 'relative',
         '& .MuiTextField-root, & .MuiFormControl-root': {
-          mb: 2.5
-        }
+          mb: { xs: 2, sm: 2.5 }
+        },
+        width: '100%',
+        maxWidth: { xs: '100%', sm: '450px' },
+        mx: 'auto'
       }}
     >
       {error && (

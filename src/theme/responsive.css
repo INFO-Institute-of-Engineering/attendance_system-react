@@ -1,0 +1,188 @@
+/* Responsive Design CSS for Attendance System */
+
+/* Base Mobile-First Styles */
+:root {
+  --drawer-width: 240px;
+}
+
+/* Global Responsive Adjustments */
+@media (max-width: 600px) {
+  .MuiContainer-root {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+  
+  .MuiTypography-h4 {
+    font-size: 1.5rem !important;
+  }
+  
+  .MuiTypography-h5 {
+    font-size: 1.25rem !important;
+  }
+  
+  .MuiTypography-h6 {
+    font-size: 1.1rem !important;
+  }
+}
+
+/* Layout Adjustments */
+@media (max-width: 900px) {
+  /* Adjust main content padding */
+  .MuiBox-root[component="main"] {
+    padding: 16px !important;
+  }
+  
+  /* Adjust floating decorative elements */
+  .decorative-circle {
+    opacity: 0.5;
+  }
+  
+  /* Reduce avatar size in sidebar */
+  .modern-sidebar .MuiAvatar-root {
+    width: 60px !important;
+    height: 60px !important;
+  }
+}
+
+/* Small Mobile Devices */
+@media (max-width: 480px) {
+  /* Further reduce padding */
+  .MuiBox-root[component="main"] {
+    padding: 12px !important;
+  }
+  
+  /* Adjust card padding */
+  .glass-card {
+    padding: 12px !important;
+  }
+  
+  /* Make buttons more touch-friendly */
+  .MuiButton-root {
+    padding: 8px 16px !important;
+    min-height: 42px;
+  }
+  
+  /* Adjust form controls */
+  .MuiFormControl-root {
+    margin-bottom: 16px !important;
+  }
+  
+  /* Hide some decorative elements */
+  .circle-1, .circle-3 {
+    display: none;
+  }
+}
+
+/* Table Responsiveness */
+@media (max-width: 768px) {
+  /* Make tables scrollable horizontally */
+  .MuiTableContainer-root {
+    overflow-x: auto;
+  }
+  
+  /* Adjust table cell padding */
+  .MuiTableCell-root {
+    padding: 8px 12px !important;
+  }
+  
+  /* Reduce font size in tables */
+  .MuiTable-root {
+    font-size: 0.875rem;
+  }
+  
+  /* Optional: Convert tables to cards on very small screens */
+  @media (max-width: 480px) {
+    .responsive-table-to-cards .MuiTableHead-root {
+      display: none;
+    }
+    
+    .responsive-table-to-cards .MuiTableRow-root {
+      display: block;
+      margin-bottom: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      padding: 8px;
+    }
+    
+    .responsive-table-to-cards .MuiTableCell-root {
+      display: flex;
+      justify-content: space-between;
+      text-align: right;
+      padding: 8px !important;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    
+    .responsive-table-to-cards .MuiTableCell-root:before {
+      content: attr(data-label);
+      font-weight: 600;
+      text-align: left;
+    }
+    
+    .responsive-table-to-cards .MuiTableCell-root:last-child {
+      border-bottom: 0;
+    }
+  }
+}
+
+/* Form Responsiveness */
+@media (max-width: 600px) {
+  /* Stack form fields */
+  .MuiGrid-container .MuiGrid-item {
+    padding: 8px !important;
+  }
+  
+  /* Make inputs more touch-friendly */
+  .MuiInputBase-root {
+    min-height: 48px;
+  }
+  
+  /* Adjust select dropdown */
+  .MuiSelect-select {
+    padding: 12px !important;
+  }
+}
+
+/* Dialog Responsiveness */
+@media (max-width: 600px) {
+  .MuiDialog-paper {
+    margin: 16px !important;
+    width: calc(100% - 32px) !important;
+    max-height: calc(100% - 32px) !important;
+  }
+  
+  .MuiDialogTitle-root {
+    padding: 16px !important;
+  }
+  
+  .MuiDialogContent-root {
+    padding: 16px !important;
+  }
+  
+  .MuiDialogActions-root {
+    padding: 8px 16px !important;
+  }
+}
+
+/* Navigation Menu Responsiveness */
+@media (max-width: 900px) {
+  .MuiListItemButton-root {
+    padding: 8px 16px !important;
+  }
+  
+  .MuiListItemIcon-root {
+    min-width: 36px !important;
+  }
+}
+
+/* AppBar Responsiveness */
+@media (max-width: 600px) {
+  .MuiToolbar-root {
+    padding-left: 8px !important;
+    padding-right: 8px !important;
+  }
+  
+  /* Adjust search box */
+  .MuiToolbar-root .MuiBox-root .MuiInputBase-root {
+    padding: 6px 8px 6px 40px !important;
+  }
+}

@@ -219,7 +219,7 @@ const ManageLeaveRequests = () => {
       </Paper>
 
       {/* Leave Requests Table */}
-      <TableContainer component={Paper} className="glass-card">
+      <TableContainer component={Paper} className="glass-card responsive-table-to-cards">
         <Table sx={{ minWidth: 650 }}>
           <TableHead>
             <TableRow>
@@ -237,28 +237,28 @@ const ManageLeaveRequests = () => {
             {filteredRequests.length > 0 ? (
               filteredRequests.map((request) => (
                 <TableRow key={request.id}>
-                  <TableCell>{request.studentName}</TableCell>
-                  <TableCell>{request.leaveType}</TableCell>
-                  <TableCell>{formatDate(request.fromDate)}</TableCell>
-                  <TableCell>
+                  <TableCell data-label="Student">{request.studentName}</TableCell>
+                  <TableCell data-label="Type">{request.leaveType}</TableCell>
+                  <TableCell data-label="From Date">{formatDate(request.fromDate)}</TableCell>
+                  <TableCell data-label="To Date">
                     {request.leaveType === 'half-day' 
                       ? '-' 
                       : formatDate(request.toDate)}
                   </TableCell>
-                  <TableCell>
+                  <TableCell data-label="Reason">
                     {request.reason.length > 30
                       ? `${request.reason.substring(0, 30)}...`
                       : request.reason}
                   </TableCell>
-                  <TableCell>
+                  <TableCell data-label="Status">
                     <Chip 
                       label={request.status} 
                       color={getStatusColor(request.status)} 
                       size="small" 
                     />
                   </TableCell>
-                  <TableCell>{formatDate(request.submittedAt)}</TableCell>
-                  <TableCell align="center">
+                  <TableCell data-label="Submitted On">{formatDate(request.submittedAt)}</TableCell>
+                  <TableCell align="center" data-label="Actions">
                     <IconButton 
                       size="small" 
                       onClick={() => handleViewDetails(request)}

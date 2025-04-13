@@ -133,7 +133,7 @@ const ManageStudents = () => {
       </Paper>
 
       {/* Students Table */}
-      <TableContainer component={Paper}>
+      <TableContainer component={Paper} className="responsive-table-to-cards">
         <Table sx={{ minWidth: 650 }}>
           <TableHead>
             <TableRow>
@@ -151,20 +151,20 @@ const ManageStudents = () => {
             {filteredStudents.length > 0 ? (
               filteredStudents.map((student) => (
                 <TableRow key={student.id}>
-                  <TableCell>{student.rollNumber}</TableCell>
-                  <TableCell>{student.name}</TableCell>
-                  <TableCell>{student.department}</TableCell>
-                  <TableCell>{student.semester}</TableCell>
-                  <TableCell>
+                  <TableCell data-label="Roll Number">{student.rollNumber}</TableCell>
+                  <TableCell data-label="Name">{student.name}</TableCell>
+                  <TableCell data-label="Department">{student.department}</TableCell>
+                  <TableCell data-label="Semester">{student.semester}</TableCell>
+                  <TableCell data-label="Attendance">
                     <Chip 
                       label={`${student.attendancePercentage}%`} 
                       color={getAttendanceColor(student.attendancePercentage)} 
                       size="small" 
                     />
                   </TableCell>
-                  <TableCell>{student.presentDays}</TableCell>
-                  <TableCell>{student.absentDays}</TableCell>
-                  <TableCell align="center">
+                  <TableCell data-label="Present Days">{student.presentDays}</TableCell>
+                  <TableCell data-label="Absent Days">{student.absentDays}</TableCell>
+                  <TableCell align="center" data-label="Actions">
                     <IconButton 
                       size="small" 
                       onClick={() => handleViewDetails(student)}

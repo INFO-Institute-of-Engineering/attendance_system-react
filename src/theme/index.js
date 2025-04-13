@@ -1,5 +1,6 @@
 import { createTheme } from '@mui/material/styles';
 import './glassmorphism.css';
+import './responsive.css'; // Import responsive styles
 
 export const theme = createTheme({
   palette: {
