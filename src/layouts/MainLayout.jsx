@@ -84,7 +84,9 @@ const MainLayout = () => {
           { text: 'Dashboard', icon: <DashboardIcon />, path: '/advisor/dashboard' },
           { text: 'Leave Requests', icon: <EventNoteIcon />, path: '/advisor/leave/requests' },
           { text: 'Manage Students', icon: <PeopleIcon />, path: '/advisor/students' },
-          { text: 'Timetable', icon: <EventNoteIcon />, path: '/advisor/timetable' }
+          { text: 'Timetable', icon: <EventNoteIcon />, path: '/advisor/timetable' },
+          { text: 'Manual Attendance', icon: <EventNoteIcon />, path: '/advisor/attendance/manual' },
+          { text: 'Attendance Management', icon: <EventNoteIcon />, path: '/advisor/attendance/manage' }
         ];
       case 'hod':
         return [

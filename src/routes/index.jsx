@@ -21,6 +21,8 @@ import ManageLeaveRequests from '../pages/advisor/ManageLeaveRequests';
 import ManageStudents from '../pages/advisor/ManageStudents';
 import TimetableManagement from '../pages/advisor/TimetableManagement';
 import AddStudent from '../pages/advisor/AddStudent';
+import ManualAttendanceEntry from '../pages/advisor/ManualAttendanceEntry';
+import AttendanceManagement from '../pages/advisor/AttendanceManagement';
 import HodManageLeaveRequests from '../pages/hod/ManageLeaveRequests';
 import HodManageStaff from '../pages/hod/ManageStaff';
 import HodManageStudents from '../pages/hod/ManageStudents';
@@ -84,6 +86,8 @@ const AppRoutes = () => {
         <Route path="/advisor/students" element={<ManageStudents />} />
         <Route path="/advisor/timetable" element={<TimetableManagement />} />
         <Route path="/advisor/students/add" element={<AddStudent />} />
+        <Route path="/advisor/attendance/manual" element={<ManualAttendanceEntry />} />
+        <Route path="/advisor/attendance/manage" element={<AttendanceManagement />} />
       </Route>
       
       {/* HOD Routes */}
