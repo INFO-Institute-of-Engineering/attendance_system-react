@@ -53,6 +53,14 @@ export const fetchTimetable = createAsyncThunk(
             { subject: 'Physics', teacher: 'Prof. Michael Chen', room: 'Lab 201' },
             { subject: 'Computer Science', teacher: 'Dr. Emily Rodriguez', room: 'Lab 301' },
             { subject: 'Mathematics', teacher: 'Dr. Sarah Johnson', room: 'Room 101' }
+          ],
+          'Saturday': [
+            { subject: 'Mathematics', teacher: 'Dr. Sarah Johnson', room: 'Room 101' },
+            { subject: 'Computer Science', teacher: 'Dr. Emily Rodriguez', room: 'Lab 301' },
+            { subject: 'Physics', teacher: 'Prof. Michael Chen', room: 'Lab 201' },
+            { subject: 'History', teacher: 'Prof. Robert Brown', room: 'Room 103' },
+            { subject: 'English', teacher: 'Prof. David Kim', room: 'Room 102' },
+            { subject: 'Chemistry', teacher: 'Dr. Lisa Wang', room: 'Lab 202' }
           ]
         }
       };
