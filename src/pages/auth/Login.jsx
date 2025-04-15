@@ -230,7 +230,8 @@ const Login = () => {
             textShadow: '0 1px 2px rgba(0,0,0,0.1)'
           }}
         >
-          Kindly contact your administrator to facilitate your access to the AMS portal.
+          Kindly contact your Class Advisor/HoD to facilitate your access to the AMS portal.
+          <p>&copy; INFO Institute of Engineering</p>
         </Typography>
       </Box>
     </Box>
