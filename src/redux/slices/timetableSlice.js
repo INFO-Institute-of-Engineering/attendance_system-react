@@ -10,12 +10,12 @@ export const fetchTimetable = createAsyncThunk(
       // Remove this mock response and uncomment the actual API call when backend is ready
       const mockTimetable = {
         classId,
-        weekDays: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+        weekDays: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday','Saturday'],
         timeSlots: ['9:00 AM - 10:00 AM', '10:00 AM - 11:00 AM', '11:15 AM - 12:15 PM', 
                    '1:15 PM - 2:15 PM', '2:15 PM - 3:15 PM', '3:30 PM - 4:30 PM'],
         schedule: {
           'Monday': [
-            { subject: 'Mathematics', teacher: 'Dr. Sarah Johnson', room: 'Room 101' },
+            { subject: 'Database Management', teacher: 'Mr. Arocia Selvaraj', room: 'Room 301' },
             { subject: 'Physics', teacher: 'Prof. Michael Chen', room: 'Lab 201' },
             { subject: 'Computer Science', teacher: 'Dr. Emily Rodriguez', room: 'Lab 301' },
             { subject: 'English', teacher: 'Prof. David Kim', room: 'Room 102' },
