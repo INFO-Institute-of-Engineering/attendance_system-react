@@ -1,5 +1,6 @@
 import axios from 'axios';
-import { connectToDatabase } from './mongodb';
+// Remove MongoDB import to prevent errors
+// import { connectToDatabase } from './mongodb';
 
 // Create axios instance with base URL
 const api = axios.create({
@@ -10,19 +11,20 @@ const api = axios.create({
   },
 });
 
-// Initialize MongoDB connection
-const initMongoDB = async () => {
-  try {
-    // Comment out MongoDB connection for now to prevent errors
-    // await connectToDatabase();
-    console.log('MongoDB connection skipped for frontend-only mode');
-  } catch (error) {
-    console.error('Failed to initialize MongoDB connection:', error);
-  }
-};
+// Initialize MongoDB connection - DISABLED
+// const initMongoDB = async () => {
+//   try {
+//     // Comment out MongoDB connection for now to prevent errors
+//     // await connectToDatabase();
+//     console.log('MongoDB connection skipped for frontend-only mode');
+//   } catch (error) {
+//     console.error('Failed to initialize MongoDB connection:', error);
+//   }
+// };
 
-// Initialize MongoDB connection when the app starts
-initMongoDB();
+// Do not initialize MongoDB connection
+// initMongoDB();
+
 
 // Request interceptor for adding auth token
 api.interceptors.request.use(

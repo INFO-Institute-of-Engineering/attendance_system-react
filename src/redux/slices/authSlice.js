@@ -5,24 +5,24 @@ export const login = createAsyncThunk(
   'auth/login',
   async ({ username, password, role }, { rejectWithValue }) => {
     try {
-      // Using MongoDB Atlas for authentication
-      const response = await api.post('/api/auth/login', { username, password, role });
-      localStorage.setItem('token', response.data.token);
-      return response.data;
+      // Comment out MongoDB authentication for now
+      // const response = await api.post('/api/auth/login', { username, password, role });
+      // localStorage.setItem('token', response.data.token);
+      // return response.data;
       
-      // Fallback to mock data if API is not available
-      // const mockResponse = {
-      //   user: {
-      //     id: 1,
-      //     username,
-      //     role,
-      //     name: 'Test User'
-      //   },
-      //   token: 'mock-jwt-token'
-      // };
-      // 
-      // localStorage.setItem('token', mockResponse.token);
-      // return mockResponse;
+      // Use mock data since MongoDB is causing issues
+      const mockResponse = {
+        user: {
+          id: 1,
+          username,
+          role,
+          name: 'Test User'
+        },
+        token: 'mock-jwt-token'
+      };
+      
+      localStorage.setItem('token', mockResponse.token);
+      return mockResponse;
     } catch (error) {
       return rejectWithValue(error.response?.data || { message: 'Login failed. Please check your credentials.' });
     }
