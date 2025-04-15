@@ -60,11 +60,11 @@ export const fetchStudents = createAsyncThunk(
       // For development/testing purposes, simulate a successful response
       // Remove this mock response and uncomment the actual API call when backend is ready
       const mockStudents = [
-        { id: 1, name: 'John Doe', regNo: 'CS2001', department: 'Computer Science', semester: 5 },
-        { id: 2, name: 'Jane Smith', regNo: 'CS2002', department: 'Computer Science', semester: 5 },
-        { id: 3, name: 'Bob Johnson', regNo: 'CS2003', department: 'Computer Science', semester: 5 },
-        { id: 4, name: 'Alice Brown', regNo: 'CS2004', department: 'Computer Science', semester: 5 },
-        { id: 5, name: 'Charlie Wilson', regNo: 'CS2005', department: 'Computer Science', semester: 5 }
+        { id: 1, name: 'Aswin Raj', regNo: '22BCS009', department: 'Computer Science and Engineering', semester: 5 },
+        { id: 2, name: 'Alphin V Thomas', regNo: '22BCS005', department: 'Computer Science and Engineering', semester: 5 },
+        { id: 3, name: 'Palraj T', regNo: '22BCS037', department: 'Computer Science and Engineering', semester: 5 },
+        { id: 4, name: 'Jithu Saaron', regNo: '22BCS021', department: 'Computer Science and Engineering', semester: 5 },
+        { id: 5, name: 'Elavarasi M', regNo: '22BCS016', department: 'Computer Science and Engineering', semester: 5 }
       ];
       
       return mockStudents;
