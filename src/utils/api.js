@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { connectToDatabase } from './mongodb';
 
 // Create axios instance with base URL
 const api = axios.create({
@@ -8,6 +9,19 @@ const api = axios.create({
     'Content-Type': 'application/json',
   },
 });
+
+// Initialize MongoDB connection
+const initMongoDB = async () => {
+  try {
+    await connectToDatabase();
+    console.log('MongoDB Atlas connection initialized');
+  } catch (error) {
+    console.error('Failed to initialize MongoDB connection:', error);
+  }
+};
+
+// Initialize MongoDB connection when the app starts
+initMongoDB();
 
 // Request interceptor for adding auth token
 api.interceptors.request.use(

@@ -1,15 +1,8 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import api from '../../utils/api';
+import { Attendance } from '../../utils/mongodb';
 
-// Configure Astra DB connection
-const configureAstraDB = () => {
-  // This would be implemented with actual Astra DB client configuration
-  console.log('Configuring Astra DB connection');
-  // Example: return new AstraClient({ ... })
-};
-
-// Initialize Astra DB
-const astraDB = configureAstraDB();
+// MongoDB is initialized in the api.js file
 
 export const fetchAttendanceData = createAsyncThunk(
   'attendance/fetchData',
