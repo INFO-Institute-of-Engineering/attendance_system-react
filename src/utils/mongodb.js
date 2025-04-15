@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 
 // MongoDB Atlas connection string
-const MONGODB_URI = process.env.MONGODB_URI || 'mongodb+srv://<username>:<password>@cluster0.mongodb.net/attendance_system?retryWrites=true&w=majority';
+const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/attendance_system';
 
 // Connection options
 const options = {

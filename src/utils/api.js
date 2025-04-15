@@ -13,8 +13,9 @@ const api = axios.create({
 // Initialize MongoDB connection
 const initMongoDB = async () => {
   try {
-    await connectToDatabase();
-    console.log('MongoDB Atlas connection initialized');
+    // Comment out MongoDB connection for now to prevent errors
+    // await connectToDatabase();
+    console.log('MongoDB connection skipped for frontend-only mode');
   } catch (error) {
     console.error('Failed to initialize MongoDB connection:', error);
   }
