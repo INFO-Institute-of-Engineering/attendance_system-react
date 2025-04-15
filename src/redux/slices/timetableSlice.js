@@ -11,14 +11,16 @@ export const fetchTimetable = createAsyncThunk(
       const mockTimetable = {
         classId,
         weekDays: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday','Saturday'],
-        timeSlots: ['9:00 AM - 10:00 AM', '10:00 AM - 11:00 AM', '11:15 AM - 12:15 PM', 
-                   '1:15 PM - 2:15 PM', '2:15 PM - 3:15 PM', '3:30 PM - 4:30 PM'],
+        timeSlots: ['9:00 AM - 9:50 AM', '9:50 AM - 10:40 AM', '10:50 AM - 11:40 AM', 
+                   '11:40 AM - 12:30 PM', '1:10 PM - 2:00 PM', '2:00 PM - 2:50 PM', '3:00 PM - 3:45 PM', '3:45 PM - 4:30 PM'],
         schedule: {
           'Monday': [
             { subject: 'Database Management', teacher: 'Mr. Arocia Selvaraj', room: 'Room 301' },
             { subject: 'Physics', teacher: 'Prof. Michael Chen', room: 'Lab 201' },
             { subject: 'Computer Science', teacher: 'Dr. Emily Rodriguez', room: 'Lab 301' },
             { subject: 'English', teacher: 'Prof. David Kim', room: 'Room 102' },
+            { subject: 'Chemistry', teacher: 'Dr. Lisa Wang', room: 'Lab 202' },
+            { subject: 'History', teacher: 'Prof. Robert Brown', room: 'Room 103' },
             { subject: 'Chemistry', teacher: 'Dr. Lisa Wang', room: 'Lab 202' },
             { subject: 'History', teacher: 'Prof. Robert Brown', room: 'Room 103' }
           ],
@@ -28,7 +30,9 @@ export const fetchTimetable = createAsyncThunk(
             { subject: 'Mathematics', teacher: 'Dr. Sarah Johnson', room: 'Room 101' },
             { subject: 'Chemistry', teacher: 'Dr. Lisa Wang', room: 'Lab 202' },
             { subject: 'History', teacher: 'Prof. Robert Brown', room: 'Room 103' },
-            { subject: 'English', teacher: 'Prof. David Kim', room: 'Room 102' }
+            { subject: 'English', teacher: 'Prof. David Kim', room: 'Room 102' },
+            { subject: 'Chemistry', teacher: 'Dr. Lisa Wang', room: 'Lab 202' },
+            { subject: 'History', teacher: 'Prof. Robert Brown', room: 'Room 103' }
           ],
           'Wednesday': [
             { subject: 'Computer Science', teacher: 'Dr. Emily Rodriguez', room: 'Lab 301' },
@@ -36,7 +40,9 @@ export const fetchTimetable = createAsyncThunk(
             { subject: 'Physics', teacher: 'Prof. Michael Chen', room: 'Lab 201' },
             { subject: 'History', teacher: 'Prof. Robert Brown', room: 'Room 103' },
             { subject: 'English', teacher: 'Prof. David Kim', room: 'Room 102' },
-            { subject: 'Chemistry', teacher: 'Dr. Lisa Wang', room: 'Lab 202' }
+            { subject: 'Chemistry', teacher: 'Dr. Lisa Wang', room: 'Lab 202' },
+            { subject: 'Chemistry', teacher: 'Dr. Lisa Wang', room: 'Lab 202' },
+            { subject: 'History', teacher: 'Prof. Robert Brown', room: 'Room 103' }
           ],
           'Thursday': [
             { subject: 'English', teacher: 'Prof. David Kim', room: 'Room 102' },
@@ -44,7 +50,9 @@ export const fetchTimetable = createAsyncThunk(
             { subject: 'Chemistry', teacher: 'Dr. Lisa Wang', room: 'Lab 202' },
             { subject: 'Computer Science', teacher: 'Dr. Emily Rodriguez', room: 'Lab 301' },
             { subject: 'Mathematics', teacher: 'Dr. Sarah Johnson', room: 'Room 101' },
-            { subject: 'Physics', teacher: 'Prof. Michael Chen', room: 'Lab 201' }
+            { subject: 'Physics', teacher: 'Prof. Michael Chen', room: 'Lab 201' },
+            { subject: 'Chemistry', teacher: 'Dr. Lisa Wang', room: 'Lab 202' },
+            { subject: 'History', teacher: 'Prof. Robert Brown', room: 'Room 103' }
           ],
           'Friday': [
             { subject: 'Chemistry', teacher: 'Dr. Lisa Wang', room: 'Lab 202' },
@@ -52,7 +60,9 @@ export const fetchTimetable = createAsyncThunk(
             { subject: 'History', teacher: 'Prof. Robert Brown', room: 'Room 103' },
             { subject: 'Physics', teacher: 'Prof. Michael Chen', room: 'Lab 201' },
             { subject: 'Computer Science', teacher: 'Dr. Emily Rodriguez', room: 'Lab 301' },
-            { subject: 'Mathematics', teacher: 'Dr. Sarah Johnson', room: 'Room 101' }
+            { subject: 'Mathematics', teacher: 'Dr. Sarah Johnson', room: 'Room 101' },
+            { subject: 'Chemistry', teacher: 'Dr. Lisa Wang', room: 'Lab 202' },
+            { subject: 'History', teacher: 'Prof. Robert Brown', room: 'Room 103' }
           ],
           'Saturday': [
             { subject: 'Mathematics', teacher: 'Dr. Sarah Johnson', room: 'Room 101' },
@@ -60,7 +70,9 @@ export const fetchTimetable = createAsyncThunk(
             { subject: 'Physics', teacher: 'Prof. Michael Chen', room: 'Lab 201' },
             { subject: 'History', teacher: 'Prof. Robert Brown', room: 'Room 103' },
             { subject: 'English', teacher: 'Prof. David Kim', room: 'Room 102' },
-            { subject: 'Chemistry', teacher: 'Dr. Lisa Wang', room: 'Lab 202' }
+            { subject: 'Chemistry', teacher: 'Dr. Lisa Wang', room: 'Lab 202' },
+            { subject: 'Chemistry', teacher: 'Dr. Lisa Wang', room: 'Lab 202' },
+            { subject: 'History', teacher: 'Prof. Robert Brown', room: 'Room 103' }
           ]
         }
       };
