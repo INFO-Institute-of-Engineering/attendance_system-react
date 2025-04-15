@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import api from '../../utils/api';
-import { Attendance } from '../../utils/mongodb';
+// import { Attendance } from '../../utils/mongodb';
 
 // MongoDB is initialized in the api.js file
 
